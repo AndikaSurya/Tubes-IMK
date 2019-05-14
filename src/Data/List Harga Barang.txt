@@ -1,0 +1,6 @@
+Nama Konser				,Jenis Kategori		,Harga		 ,Jumlah Tiket	
+Shawn Mendes: The Tour Asia 		/Category 1		/Rp.900.000-		/500
+Shawn Mendes: The Tour Asia		/Category 2		/Rp.1.600.000-		/400
+Shawn Mendes: The Tour Asia		/Category 3		/Rp.2.100.000-		/300
+Shawn Mendes: The Tour Asia		/Category 4		/Rp.1.600.000-		/200
+Shawn Mendes: The Tour Asia		/Category 5		/Rp.3.750.000-		/100
