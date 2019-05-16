@@ -14,8 +14,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.graalvm.compiler.nodes.PauseNode;
 
 /**
  *
@@ -70,9 +70,8 @@ public class pesenHP extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         kategori = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jumlah = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
-        Total = new javax.swing.JTextField();
+        total = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -80,7 +79,7 @@ public class pesenHP extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        jumlah = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("karcis.com");
@@ -140,33 +139,29 @@ public class pesenHP extends javax.swing.JFrame {
         jPanel1.add(jLabel3);
         jLabel3.setBounds(92, 389, 159, 29);
 
-        jumlah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 TICKET", "2 TICKET", "3 TICKET", "4 TICKET", "5 TICKET", " " }));
-        jumlah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jumlahActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jumlah);
-        jumlah.setBounds(255, 399, 136, 20);
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel4.setText("Total Harga: ");
         jPanel1.add(jLabel4);
         jLabel4.setBounds(92, 430, 159, 32);
-        jPanel1.add(Total);
-        Total.setBounds(255, 436, 280, 32);
+        jPanel1.add(total);
+        total.setBounds(255, 436, 280, 32);
 
         jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
-        jButton1.setBounds(92, 496, 102, 23);
+        jButton1.setBounds(92, 496, 102, 29);
 
         jButton2.setText("CANCEL");
         jPanel1.add(jButton2);
-        jButton2.setBounds(255, 496, 71, 23);
+        jButton2.setBounds(255, 496, 91, 29);
 
         jButton3.setText("BUKTI PEMBELIAN");
         jPanel1.add(jButton3);
-        jButton3.setBounds(429, 496, 119, 23);
+        jButton3.setBounds(429, 496, 167, 29);
 
         jButton4.setText("Tambah");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -175,11 +170,16 @@ public class pesenHP extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(648, 275, 71, 23);
+        jButton4.setBounds(648, 275, 91, 29);
 
         jButton5.setText("Delete");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton5);
-        jButton5.setBounds(866, 218, 92, 23);
+        jButton5.setBounds(866, 218, 92, 29);
 
         jLabel5.setFont(new java.awt.Font("Square721 Cn BT", 0, 65)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -194,11 +194,9 @@ public class pesenHP extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(725, 275, 121, 23);
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Untitled-1.png"))); // NOI18N
-        jPanel1.add(jLabel7);
-        jLabel7.setBounds(0, 0, 1048, 630);
+        jButton6.setBounds(725, 275, 163, 29);
+        jPanel1.add(jumlah);
+        jumlah.setBounds(260, 390, 130, 26);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1050, 630);
@@ -213,10 +211,6 @@ public class pesenHP extends javax.swing.JFrame {
     private void kategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kategoriActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_kategoriActionPerformed
-
-    private void jumlahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jumlahActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jumlahActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -262,6 +256,26 @@ public class pesenHP extends javax.swing.JFrame {
         kategori.setText(jTable2.getValueAt(row, 1).toString());
     }//GEN-LAST:event_jTable2MouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+         DefaultTableModel model = (DefaultTableModel)jTable2.getModel();
+        try {
+            int SelectedRowIndex = jTable2.getSelectedRow();
+            model.removeRow(SelectedRowIndex);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        namaKonser.setText("");
+        kategori.setText("");
+        
+    
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -298,7 +312,6 @@ public class pesenHP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Total;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -310,12 +323,12 @@ public class pesenHP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable jTable2;
-    private javax.swing.JComboBox jumlah;
+    private javax.swing.JTextField jumlah;
     private javax.swing.JTextField kategori;
     private javax.swing.JTextField namaKonser;
+    private javax.swing.JTextField total;
     // End of variables declaration//GEN-END:variables
 }
